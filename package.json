@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "eslint": "^9.6.0",
     "express": "^4.19.2"
   },
   "name": "project",
@@ -12,5 +11,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "eslint": "^9.6.0",
+    "globals": "^15.8.0"
+  }
 }

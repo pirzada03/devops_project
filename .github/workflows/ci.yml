@@ -1,0 +1,48 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-build-artifact:
+    name: Lint Build and Store Artifact
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Node setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.17.1'
+      
+      - name: Install backend dependencies
+        run: |
+          cd server
+          npm i --force
+
+      - name: Run ESLint on backend
+        run: |
+          cd server
+          npx eslint '**/*.js'
+      - name: Build Backend
+        run: |
+          cd server
+          npx nodemon server
+
+      - name: Zip backend build
+        run: |
+          cd server
+          zip -r ../../server-build.zip .
+
+      - name: Upload Backend Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: backend-build
+          path: backend-build.zip
