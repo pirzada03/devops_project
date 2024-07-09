@@ -24,21 +24,17 @@ jobs:
       
       - name: Install backend dependencies
         run: |
-          cd server
           npm i --force
 
       - name: Run ESLint on backend
         run: |
-          cd server
           npx eslint '**/*.js'
       - name: Build Backend
         run: |
-          cd server
           npx nodemon server
 
       - name: Zip backend build
         run: |
-          cd server
           zip -r ../../server-build.zip .
 
       - name: Upload Backend Artifact

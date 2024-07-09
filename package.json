@@ -1,9 +1,5 @@
 {
   "dependencies": {
-<<<<<<< HEAD
-    "eslint": "^9.6.0",
-=======
->>>>>>> 37e3b562dde8e542debade14db444ca156db0a7c
     "express": "^4.19.2"
   },
   "name": "project",
@@ -15,13 +11,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-<<<<<<< HEAD
-  "description": ""
-=======
   "description": "",
   "devDependencies": {
     "eslint": "^9.6.0",
     "globals": "^15.8.0"
   }
->>>>>>> 37e3b562dde8e542debade14db444ca156db0a7c
 }
