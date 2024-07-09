@@ -8,6 +8,7 @@
   "scripts": {
     "start": "node index.js",
     "build": "echo 'No build script defined'",
+    "test": "mocha ./test.js",
     "dev": "nodemon index.js",
     "lint": "eslint -c eslint.config.cjs '**/*.js'"
   },
@@ -17,6 +18,9 @@
   "description": "",
   "devDependencies": {
     "eslint": "^9.6.0",
-    "globals": "^15.8.0"
+    "globals": "^15.8.0",
+    "mocha": "^10.6.0",
+    "nodemon": "^3.1.4",
+    "supertest": "^7.0.0"
   }
 }
