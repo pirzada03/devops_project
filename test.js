@@ -2,7 +2,7 @@ const request = require("supertest");
 const app = require("./index");
 
 describe("GET /", () => {
-    it("responds with Hello World!", (done) => {
+    it("responds with Hello DEVOPS!", (done) => {
         request(app).get("/").expect("Hello DEVOPS!", done);
     })
 });
