@@ -22,23 +22,24 @@ jobs:
         with:
           node-version: '18.17.1'
       
-      - name: Install backend dependencies
+      - name: Install dependencies
         run: |
-          npm i --force
+          npm install --force
 
-      - name: Run ESLint on backend
+      - name: Run ESLint on code
         run: |
           npx eslint '**/*.js'
-      - name: Build Backend
+      
+      - name: Build code
         run: |
-          npx nodemon server
+          npm run build 
 
-      - name: Zip backend build
+      - name: Zip code build
         run: |
-          zip -r ../../server-build.zip .
+          zip -r code-build.zip .
 
-      - name: Upload Backend Artifact
+      - name: Upload Code Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: backend-build
-          path: backend-build.zip
+          name: code-build
+          path: code-build.zip
