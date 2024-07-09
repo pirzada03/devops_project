@@ -6,9 +6,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start":"node index.js",
-    "build":"echo 'No build script defined'",
-    "lint" : "eslint '**/*.js'"
+    "start": "node index.js",
+    "build": "echo 'No build script defined'",
+    "dev": "nodemon index.js",
+    "lint": "eslint '**/*.js'"
   },
   "keywords": [],
   "author": "",
