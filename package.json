@@ -2,7 +2,7 @@
   "dependencies": {
     "express": "^4.19.2"
   },
-  "name": "project",
+  "name": "devops_project",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
