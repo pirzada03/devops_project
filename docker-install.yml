@@ -15,7 +15,7 @@
           - curl
           - software-properties-common
         state: latest
-
+    
     - name: Add Docker GPG key
       ansible.builtin.shell:
         cmd: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
@@ -59,3 +59,48 @@
 
     - debug:
         msg: "{{ compose_version.stdout }}"
+
+    - name: Clone node.js app repository
+      git:
+        repo: https://github.com/pirzada03/devops_project.git
+        dest: /var/www/html/nodejs-app
+
+    - name: Create Jenkins data directory
+      ansible.builtin.file:
+        path: /home/ubuntu/jenkins_data/jenkins_home
+        state: directory
+        mode: '0755'
+
+    # Create docker-compose file for Jenkins
+    - name: Create Docker Compose file for Jenkins
+      ansible.builtin.copy:
+        dest: "/docker-compose.yml"
+        content: |
+          version: '3'
+          services:
+            jenkins:
+              container_name: jenkins
+              image: jenkins/jenkins:lts-jdk11
+              restart: unless-stopped
+              ports:
+                - "8080:8080"
+              volumes:
+                - "/jenkins_data/jenkins_home:/var/jenkins_home"
+        mode: '0644'
+
+    # Run Docker Compose to start Jenkins
+    - name: Run Docker Compose to start Jenkins
+      ansible.builtin.shell:
+        cmd: docker-compose -f /docker-compose.yml up -d
+        chdir: /home/ubuntu
+
+    # Display Jenkins initial admin password
+    - name: Get Jenkins initial admin password
+      ansible.builtin.shell:
+        cmd: cat /jenkins_data/jenkins_home/secrets/initialAdminPassword
+      register: jenkins_password
+      changed_when: false
+
+    - name: Show Jenkins initial admin password
+      ansible.builtin.debug:
+        msg: "Jenkins initial admin password is: {{ jenkins_password.stdout }}"
